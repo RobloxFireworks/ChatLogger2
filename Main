@@ -1,1 +1,247 @@
+-- Instances:
 
+local Main = Instance.new("ScreenGui")
+local Header = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local Block = Instance.new("Frame")
+local Name = Instance.new("TextLabel")
+local UIPadding = Instance.new("UIPadding")
+local Close = Instance.new("ImageButton")
+local Min = Instance.new("ImageButton")
+local Body = Instance.new("Frame")
+local UICorner_2 = Instance.new("UICorner")
+local Text = Instance.new("ScrollingFrame")
+local UIListLayout = Instance.new("UIListLayout")
+local UserContents = Instance.new("TextLabel")
+local UIPadding_2 = Instance.new("UIPadding")
+local UITextSizeConstraint = Instance.new("UITextSizeConstraint")
+local Save = Instance.new("TextButton")
+local UICorner_3 = Instance.new("UICorner")
+local Players = game:GetService("Players")
+local event = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents
+local onOff = false
+local loggedPlayers = {}
+
+--Properties:
+
+Main.Name = "Main"
+Main.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+Main.ZIndexBehavior = Enum.ZIndexBehavior.Global
+Main.DisplayOrder = 1000
+
+Header.Name = "Header"
+Header.Parent = Main
+Header.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+Header.BackgroundTransparency = 0.300
+Header.Position = UDim2.new(0.00100000005, 0, 0.699999988, 0)
+Header.Size = UDim2.new(0.300000012, 0, 0.0299999993, 0)
+
+UICorner.CornerRadius = UDim.new(0, 4)
+UICorner.Parent = Header
+
+Block.Name = "Block"
+Block.Parent = Header
+Block.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+Block.BorderSizePixel = 0
+Block.Position = UDim2.new(0, 0, 0.879999995, 0)
+Block.Size = UDim2.new(1, 0, 0.100000001, 0)
+
+Name.Name = "Name"
+Name.Parent = Header
+Name.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Name.BackgroundTransparency = 1.000
+Name.BorderSizePixel = 0
+Name.Size = UDim2.new(1, 0, 1, 0)
+Name.Font = Enum.Font.Arial
+Name.Text = "Chat Logger - ik, im cool"
+Name.TextColor3 = Color3.fromRGB(255, 255, 255)
+Name.TextSize = 16.000
+Name.TextXAlignment = Enum.TextXAlignment.Left
+
+UIPadding.Parent = Name
+UIPadding.PaddingLeft = UDim.new(0, 4)
+
+Close.Name = "Close"
+Close.Parent = Header
+Close.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Close.BackgroundTransparency = 1.000
+Close.BorderSizePixel = 0
+Close.Position = UDim2.new(0.959999979, 0, 0.150000006, 0)
+Close.Size = UDim2.new(0.0299999993, 0, 0.600000024, 0)
+Close.Image = "rbxassetid://12509414636"
+Close.MouseButton1Down:Connect(function()
+	print("Peace.")
+	Main:Destroy()
+end)
+
+Min.Name = "Min"
+Min.Parent = Header
+Min.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Min.BackgroundTransparency = 1.000
+Min.BorderSizePixel = 0
+Min.Position = UDim2.new(0.899999976, 0, 0.150000006, 0)
+Min.Size = UDim2.new(0.0299999993, 0, 0.600000024, 0)
+Min.Image = "rbxassetid://12509429482"
+Min.MouseButton1Down:Connect(function()
+	Text.CanvasPosition = Vector2.new(0, 600)
+	if onOff == false then
+		onOff = true
+		Body:TweenSize(UDim2.new(1, 0, 0, 0), "Out", "Quad", 1)
+		task.wait(.9)
+		UserContents.Visible = false
+		task.wait(.1)
+		Body.Visible = false
+		task.wait(1)
+	else
+		UserContents.Visible = true
+		Body.Visible = true
+		Body:TweenSize(UDim2.new(1, 0, 9, 0), "Out", "Quad", 1)
+		onOff = false
+		task.wait(1)
+		Text.CanvasPosition = Vector2.new(0, 600)
+	end
+end)
+
+Body.Name = "Body"
+Body.Parent = Header
+Body.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+Body.BackgroundTransparency = 0.300
+Body.ClipsDescendants = true
+Body.Position = UDim2.new(0, 0, 0.879999995, 0)
+Body.Size = UDim2.new(1, 0, 9, 0)
+
+UICorner_2.CornerRadius = UDim.new(0, 4)
+UICorner_2.Parent = Body
+
+Text.Name = "Text"
+Text.Parent = Body
+Text.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Text.BackgroundTransparency = 1.000
+Text.BorderSizePixel = 0
+Text.Position = UDim2.new(0, 0, 0.00999999978, 0)
+Text.Selectable = false
+Text.Size = UDim2.new(1, 0, 0.980000019, 0)
+Text.CanvasPosition = Vector2.new(0, 441.773987)
+Text.CanvasSize = UDim2.new(0, 0, 3, 0)
+Text.ScrollBarThickness = 3
+Text.CanvasPosition = Vector2.new(0, 600)
+
+UIListLayout.Parent = Text
+UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+UIListLayout.VerticalAlignment = Enum.VerticalAlignment.Bottom
+
+UserContents.Name = "UserContents"
+UserContents.Parent = Text
+UserContents.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+UserContents.BackgroundTransparency = 1.000
+UserContents.BorderSizePixel = 0
+UserContents.Size = UDim2.new(1, 0, 0.0399999991, 0)
+UserContents.Font = Enum.Font.Arial
+UserContents.Text = "I dont have much time.. the chat is coming."
+UserContents.TextColor3 = Color3.fromRGB(255, 255, 255)
+UserContents.TextSize = 14.000
+UserContents.TextWrapped = true
+UserContents.TextXAlignment = Enum.TextXAlignment.Left
+UserContents.RichText = true
+
+local chats = {}
+event.OnMessageDoneFiltering.OnClientEvent:Connect(function(object)
+    local chatMessage = string.format("%s : %s", object.FromSpeaker, object.Message)
+
+    table.insert(chats, os.date("[%Y-%m-%d : %H-%M-%S] ")..chatMessage) -- add the chat message to the chats table
+
+    local clone = UserContents:Clone()
+    clone.Parent = Text
+    clone.TextTransparency = 0
+    clone.Text = chatMessage -- display the chat message in the UI
+
+	Players.PlayerAdded:Connect(function(plr)
+		if loggedPlayers[plr.Name] == nil then -- check if the player has already joined
+			local playerJoinedChat = string.format(plr.Name.." HAS JOINED THE GAME.")
+			table.insert(chats, os.date("[%Y-%m-%d : %H-%M-%S] ")..playerJoinedChat)
+			local clone = UserContents:Clone()
+			clone.Parent = Text
+			clone.TextTransparency = 0
+			clone.Text = playerJoinedChat -- display the chat message in the UI
+			loggedPlayers[plr.Name] = true -- mark the player as joined in the table
+		end
+	end)
+
+	local saveConnection
+    saveConnection = Save.MouseButton1Down:Connect(function()
+        local filename = "ChatLogs"..os.date("%M-%S")..".txt"
+        writefile(filename, table.concat(chats, "\n")) -- save the chats table to a text file, with each chat message on a new line
+		saveConnection:Disconnect() -- remove the event listener
+    end)
+end)
+
+
+UIPadding_2.Parent = UserContents
+UIPadding_2.PaddingLeft = UDim.new(0, 8)
+UIPadding_2.PaddingTop = UDim.new(0, 5)
+
+UITextSizeConstraint.Parent = UserContents
+UITextSizeConstraint.MaxTextSize = 14
+
+Save.Name = "Save"
+Save.Parent = Header
+Save.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+Save.BorderSizePixel = 0
+Save.Position = UDim2.new(0.5, 0, 0.129999995, 0)
+Save.Size = UDim2.new(0.300000012, 0, 0.649999976, 0)
+Save.Font = Enum.Font.Arial
+Save.Text = "Save as .txt"
+Save.TextColor3 = Color3.fromRGB(255, 255, 255)
+Save.TextSize = 16.000
+Save.TextWrapped = true
+
+
+UICorner_3.CornerRadius = UDim.new(0, 3)
+UICorner_3.Parent = Save
+
+-- Scripts:
+
+local function QWGPU_fake_script() -- Header.Drag 
+	local script = Instance.new('LocalScript', Header)
+
+	local UserInputService = game:GetService("UserInputService")
+
+	local gui = script.Parent
+
+	local dragging
+	local dragInput
+	local dragStart
+	local startPos
+
+	local function update(input)
+		local delta = input.Position - dragStart
+		gui.Position = gui:TweenPosition(UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y), 'Out', 'Linear', 0, true); -- drag speed
+	end
+
+	gui.InputBegan:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+			dragging = true
+			dragStart = input.Position
+			startPos = gui.Position
+
+			input.Changed:Connect(function()
+				if input.UserInputState == Enum.UserInputState.End then
+					dragging = false
+				end
+			end)
+		end
+	end)
+
+	gui.InputChanged:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+			dragInput = input
+		end
+	end)
+
+	UserInputService.InputChanged:Connect(function(input)
+		if input == dragInput and dragging then
+			update(input)
+		end
+	end)
+end
+coroutine.wrap(QWGPU_fake_script)()
