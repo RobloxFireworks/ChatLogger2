@@ -24,7 +24,23 @@ local loggedPlayers = {}
 
 --Properties:
 
-Main.Name = "Main"
+local characters = "1234567890!@#$%^&*()qwertyuiopasdfghjkl;zxcvbnm,./QWERTYUIOPASDFGHJKL:ZXCVBNM<>?"
+
+function generateRandomString()
+    local randomString = ""
+    local maxLength = 9 -- Maximum length of the generated string
+
+    for i = 1, maxLength do
+        local randomIndex = math.random(1, #characters)
+        local randomChar = characters:sub(randomIndex, randomIndex)
+        randomString = randomString .. randomChar
+    end
+
+    return randomString
+end
+
+local randomString = generateRandomString()
+Main.Name = randomString
 Main.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 Main.ZIndexBehavior = Enum.ZIndexBehavior.Global
 Main.DisplayOrder = 1000
@@ -53,7 +69,7 @@ Name.BackgroundTransparency = 1.000
 Name.BorderSizePixel = 0
 Name.Size = UDim2.new(1, 0, 1, 0)
 Name.Font = Enum.Font.Arial
-Name.Text = "Chat Logger - ik, im cool"
+Name.Text = Main.Name
 Name.TextColor3 = Color3.fromRGB(255, 255, 255)
 Name.TextSize = 16.000
 Name.TextXAlignment = Enum.TextXAlignment.Left
