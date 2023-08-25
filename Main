@@ -71,7 +71,9 @@ Name.BackgroundTransparency = 1.000
 Name.BorderSizePixel = 0
 Name.Size = UDim2.new(1, 0, 1, 0)
 Name.Font = Enum.Font.Arial
-Name.Text = Main.Name
+while wait() do
+    Name.Text = Main.Name
+end
 Name.TextColor3 = Color3.fromRGB(255, 255, 255)
 Name.TextSize = 16.000
 Name.TextXAlignment = Enum.TextXAlignment.Left
