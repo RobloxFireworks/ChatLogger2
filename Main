@@ -24,11 +24,11 @@ local loggedPlayers = {}
 
 --Properties:
 
-local characters = "1234567890!@#$%^&*()qwertyuiopasdfghjkl;zxcvbnm,./QWERTYUIOPASDFGHJKL:ZXCVBNM<>?"
+local characters = "1234567890!@#$%^&*()qwertyuiopasdfghjkl;zxcvbnm,./QWERTYUIOPASDFGHJKL:ZXCVBNM<>? _"
 
 function generateRandomString()
     local randomString = ""
-    local maxLength = 9 -- Maximum length of the generated string
+    local maxLength = math.random(9, 17) -- Maximum length of the generated string
 
     for i = 1, maxLength do
         local randomIndex = math.random(1, #characters)
@@ -36,14 +36,16 @@ function generateRandomString()
         randomString = randomString .. randomChar
     end
 
-    return randomString
+    while wait(math.random(.9762, 1)) do
+    	return randomString
+    end
 end
 
 local randomString = generateRandomString()
 Main.Name = randomString
 Main.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 Main.ZIndexBehavior = Enum.ZIndexBehavior.Global
-Main.DisplayOrder = 1000
+Main.DisplayOrder = 99999
 
 Header.Name = "Header"
 Header.Parent = Main
@@ -86,7 +88,6 @@ Close.Position = UDim2.new(0.959999979, 0, 0.150000006, 0)
 Close.Size = UDim2.new(0.0299999993, 0, 0.600000024, 0)
 Close.Image = "rbxassetid://12509414636"
 Close.MouseButton1Down:Connect(function()
-	print("Peace.")
 	Main:Destroy()
 end)
 
